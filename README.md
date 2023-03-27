@@ -18,4 +18,5 @@
 - Set the application's Port at the package.json "prod" script
 - npx prisma db push
 - npx prisma db seed
+- npm run build
 - npm run prod
