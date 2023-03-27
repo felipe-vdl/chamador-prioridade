@@ -3,10 +3,7 @@ import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
 import { observable } from "@trpc/server/observable";
 import { EventEmitter } from "events";
-import type {
-  CurrentCommonPassword,
-  CurrentPriorityPassword,
-} from "@prisma/client";
+import type { CurrentCommonPassword } from "@prisma/client";
 
 type PasswordInfo = Pick<CurrentCommonPassword, "password" | "message">;
 
@@ -94,11 +91,12 @@ export const passwordRouter = createTRPCRouter({
             },
           });
         }
-      }).then((commonSession) => {
+      })
+      .then((commonSession) => {
         if (commonSession) {
           passwordEmitter.emit("total-common", commonSession.quantity);
         }
-      });;
+      });
 
     return newPassword;
   }),
@@ -108,7 +106,7 @@ export const passwordRouter = createTRPCRouter({
     /* Current Session */
     await ctx.prisma.sessionPriorityTotal
       .findFirst({
-        orderBy: { id: "desc" },
+        orderBy: { id: "desc" }
       })
       .then(async (session) => {
         if (session) {
@@ -119,7 +117,8 @@ export const passwordRouter = createTRPCRouter({
             },
           });
         }
-      }).then((prioritySession) => {
+      })
+      .then((prioritySession) => {
         if (prioritySession) {
           passwordEmitter.emit("total-priority", prioritySession.quantity);
         }
@@ -270,7 +269,7 @@ export const passwordRouter = createTRPCRouter({
     passwordEmitter.emit("reset-priority");
     return true;
   }),
-  currentTotals: publicProcedure.query(async ({ctx}) => {
+  currentTotals: publicProcedure.query(async ({ ctx }) => {
     const [commonSession, prioritySession] = await ctx.prisma.$transaction([
       ctx.prisma.sessionCommonTotal.findFirst({
         orderBy: { id: "desc" },
@@ -282,7 +281,7 @@ export const passwordRouter = createTRPCRouter({
 
     return {
       common: commonSession?.quantity ?? 0,
-      priority: prioritySession?.quantity ?? 0
-    }
-  })
+      priority: prioritySession?.quantity ?? 0,
+    };
+  }),
 });
