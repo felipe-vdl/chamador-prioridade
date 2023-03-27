@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+model CommonPassword {
+    id        Int        @id @default(autoincrement())
+    createdAt DateTime   @default(now()) @map("created_at")
+    @@map("common_passwords")
+}
+model CurrentCommonPassword {
+    id        Int        @id @default(1)
+    password  Int
+    message   String?
+    createdAt DateTime   @default(now()) @map("created_at")
+    updatedAt DateTime?  @updatedAt @map("updated_at")
+    @@map("current_common_password")
+}
+model SessionCommonTotal {
+    id        Int        @id @default(autoincrement())
+    quantity  Int
+    createdAt DateTime   @default(now()) @map("created_at")
+    updatedAt DateTime?  @updatedAt @map("updated_at")
+    closedAt  DateTime?  @map("closed_at")
+    @@map("session_common_totals")
+}
+
+model PriorityPassword {
+    id        Int        @id @default(autoincrement())
+    createdAt DateTime   @default(now()) @map("created_at")
+    @@map("priority_passwords")
+}
+model CurrentPriorityPassword {
+    id        Int        @id @default(1)
+    password  Int
+    message   String?
+    createdAt DateTime   @default(now()) @map("created_at")
+    updatedAt DateTime?  @updatedAt @map("updated_at")
+    @@map("current_priority_password")
+}
+model SessionPriorityTotal {
+    id        Int        @id @default(autoincrement())
+    quantity  Int
+    createdAt DateTime   @default(now()) @map("created_at")
+    updatedAt DateTime?  @updatedAt @map("updated_at")
+    closedAt  DateTime?  @map("closed_at")
+    @@map("session_priority_totals")
+}
