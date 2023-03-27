@@ -41,7 +41,7 @@ const Admin: NextPage = () => {
 
   /* Senha Prioridade */
   const [priorityTotal, setPriorityTotal] = useState<number>(0);
-  const [priorityMessageInput, setPriorityMessageInput] = useState("");
+  // const [priorityMessageInput, setPriorityMessageInput] = useState("");
   const [priorityInfo, setPriorityInfo] = useState<Pick<
     CurrentPriorityPassword,
     "message" | "password"
@@ -66,7 +66,7 @@ const Admin: NextPage = () => {
   const handleCallPriority = (sum: number) => {
     callPriorityMutation.mutate({
       password: (priorityInfo?.password ?? 0) + sum,
-      message: priorityMessageInput,
+      message: commonMessageInput,
     });
   };
 
@@ -174,8 +174,8 @@ const Admin: NextPage = () => {
                 <input
                   name="message"
                   type="text"
-                  value={priorityMessageInput}
-                  onChange={(evt) => setPriorityMessageInput(evt.target.value)}
+                  value={commonMessageInput}
+                  onChange={(evt) => setCommonMessageInput(evt.target.value)}
                   placeholder="Número do Guichê"
                   className="ouline-none rounded border-2 border-yellow-800 bg-amber-50 p-2 text-slate-800"
                 />
