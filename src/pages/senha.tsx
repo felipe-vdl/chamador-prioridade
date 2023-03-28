@@ -32,9 +32,6 @@ const SenhaPage: NextPage = () => {
         win.document.write(
           `<h2 style="font-size: 40px; text-align: center; margin: 0; padding: 0;">COMUM<h2>`
         );
-        win.document.write(
-          `<p style="font-size: 12px; font-weight: normal; text-align: center; margin: 0; padding: 0;">Retire o seu IPTU também pelo WhatsApp: (21) 99529-1297<p>`
-        );
         win.document.write("</body></html>");
         win.print();
         win.close();
@@ -69,9 +66,6 @@ const SenhaPage: NextPage = () => {
           );
           win.document.write(
             `<h2 style="font-size: 40px; text-align: center; margin: 0; padding: 0;">PRIORIDADE<h2>`
-          );
-          win.document.write(
-            `<p style="font-size: 12px; font-weight: normal; text-align: center; margin: 0; padding: 0;">Retire o seu IPTU também pelo WhatsApp: (21) 99529-1297<p>`
           );
           win.document.write("</body></html>");
           win.print();
