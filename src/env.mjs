@@ -7,8 +7,8 @@ import { z } from "zod";
 const server = z.object({
   DATABASE_URL: z.string().url(),
   NODE_ENV: z.enum(["development", "test", "production"]),
-  WSS_URL: z.string().url(),
-  WSS_PORT: z.string(),
+  NEXT_PUBLIC_WSS_URL: z.string().url(),
+  NEXT_PUBLIC_WSS_PORT: z.string(),
 });
 
 /**
@@ -28,8 +28,8 @@ const client = z.object({
 const processEnv = {
   DATABASE_URL: process.env.DATABASE_URL,
   NODE_ENV: process.env.NODE_ENV,
-  WSS_URL: process.env.WSS_URL,
-  WSS_PORT: process.env.WSS_PORT
+  NEXT_PUBLIC_WSS_URL: process.env.NEXT_PUBLIC_WSS_URL,
+  NEXT_PUBLIC_WSS_PORT: process.env.NEXT_PUBLIC_WSS_PORT
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 };
 

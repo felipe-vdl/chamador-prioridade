@@ -4,7 +4,7 @@ import { prisma } from "@/server/db";
 import ws from "ws";
 
 const wss = new ws.Server({
-  port: process.env.WSS_PORT ? +process.env.WSS_PORT : 3001
+  port: process.env.NEXT_PUBLIC_WSS_PORT ? +process.env.NEXT_PUBLIC_WSS_PORT : 3001
 });
 
 const handler = applyWSSHandler({ wss, router: appRouter, createContext: () => {
@@ -17,7 +17,7 @@ wss.on("connection", (ws) => {
     console.log(`➖➖ Connection (${wss.clients.size})`);
   });
 });
-console.log(`✅ WebSocket Server listening on ws://localhost:${process.env.WSS_PORT ? process.env.WSS_PORT : 3001}`);
+console.log(`✅ WebSocket Server listening on ws://localhost:${process.env.NEXT_PUBLIC_WSS_PORT ? process.env.NEXT_PUBLIC_WSS_PORT : 3001}`);
 
 process.on("SIGTERM", () => {
   console.log("SIGTERM");
