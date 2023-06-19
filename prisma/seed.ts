@@ -3,19 +3,35 @@ const prisma = new PrismaClient();
 
 const main = async () => {
   /* Comum */
-  const currentCommonPassword = await prisma.currentCommonPassword.create({
-    data: { password: 0, message: "" }
+  const currentCommonPassword = await prisma.currentCommonPassword.upsert({
+    where: { id: 1 },
+    create: {
+      password: 0, message: ""
+    },
+    update: {}
   });
-  const totalCommonPasswords = await prisma.sessionCommonTotal.create({
-    data: { quantity: 0, updatedAt: null, closedAt: null }
+  const totalCommonPasswords = await prisma.sessionCommonTotal.upsert({
+    where: { id: 1 },
+    create: {
+      quantity: 0, updatedAt: null, closedAt: null
+    },
+    update: {}
   });
 
   /* Prioridade */
-  const currentPriorityPassword = await prisma.currentPriorityPassword.create({
-    data: { password: 0, message: "" }
+  const currentPriorityPassword = await prisma.currentPriorityPassword.upsert({
+    where: { id: 1 },
+    create: {
+      password: 0, message: ""
+    },
+    update: {}
   });
-  const totalPriorityPasswords = await prisma.sessionPriorityTotal.create({
-    data: { quantity: 0, updatedAt: null, closedAt: null }
+  const totalPriorityPasswords = await prisma.sessionPriorityTotal.upsert({
+    where: { id: 1 },
+    create: {
+      quantity: 0, updatedAt: null, closedAt: null
+    },
+    update: {}
   });
 }
 

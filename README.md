@@ -9,7 +9,15 @@
 - npx prisma db seed
 - npm run dev
 
-## Production:
+## Production with Docker:
+- cp .env.example .env
+- Set the database address and credentials on .env
+- Set NODE_ENV="production" on .env
+- cp docker-compose.yml.example docker-compose.yml
+- Map the Application Port and WSS Port on docker-compose.yml
+- docker compose up
+
+## Production without Docker:
 - npm install
 - cp .env.example .env
 - Set the DB Credentials on .env DATABASE_URL

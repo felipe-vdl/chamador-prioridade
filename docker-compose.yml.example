@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  chamador:
+    build: ./
+    ports:
+      # "hostPort:containerPort"
+      - "3000:3000" # Application
+      - "3001:3001" # WebSocket Server
+    env_file:
+      - .env
