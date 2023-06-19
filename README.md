@@ -14,7 +14,9 @@
 - Set the database address and credentials on .env
 - Set NODE_ENV="production" on .env
 - cp docker-compose.yml.example docker-compose.yml
-- Map the Application Port and WSS Port on docker-compose.yml
+- Set the WSS Port on .env.
+- Map the desired Application Port and WSS Port on docker-compose.yml
+- The WSS env and mapped port's should be the same, since we use it on the client side.
 - docker compose up
 
 ## Production without Docker:

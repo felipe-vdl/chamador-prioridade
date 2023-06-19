@@ -7,4 +7,4 @@ services:
       - "3000:3000" # Application
       - "3001:3001" # WebSocket Server
     env_file:
-      - .env
+      - ./.env
