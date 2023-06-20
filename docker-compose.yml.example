@@ -6,3 +6,4 @@ services:
       # "hostPort:containerPort"
       - "3000:3000" # Application
       - "3001:3001" # WebSocket Server
+    restart: always
