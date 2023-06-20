@@ -244,9 +244,11 @@ export const passwordRouter = createTRPCRouter({
       });
     }
 
+    const createdAtDate = new Date();
     /* Create a New Session */
     await ctx.prisma.sessionCommonTotal.create({
       data: {
+        createdAt: createdAtDate,
         quantity: 0,
         updatedAt: null,
         closedAt: null,
@@ -254,6 +256,7 @@ export const passwordRouter = createTRPCRouter({
     });
     await ctx.prisma.sessionPriorityTotal.create({
       data: {
+        createdAt: createdAtDate,
         quantity: 0,
         updatedAt: null,
         closedAt: null,
