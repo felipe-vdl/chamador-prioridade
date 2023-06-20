@@ -24,7 +24,7 @@ const getEndingLink = () => {
     });
   }
   const client = createWSClient({
-    url: (process.env.NEXT_PUBLIC_WSS_URL && process.env.NEXT_PUBLIC_WSS_PORT) ? `${process.env.NEXT_PUBLIC_WSS_URL}:${process.env.NEXT_PUBLIC_WSS_PORT}` : "ws://localhost:3001",
+    url: (process.env.NODE_ENV === "production") ? (process.env.NEXT_PUBLIC_WSS_URL ? process.env.NEXT_PUBLIC_WSS_URL : "ws://localhost") : (process.env.NEXT_PUBLIC_WSS_URL && process.env.NEXT_PUBLIC_WSS_PORT) ? `${process.env.NEXT_PUBLIC_WSS_URL}:${process.env.NEXT_PUBLIC_WSS_PORT}` : "ws://localhost:3001",
   });
   return wsLink<AppRouter>({
     client,
