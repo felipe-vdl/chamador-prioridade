@@ -88,28 +88,32 @@ const SenhaPage: NextPage = () => {
           height={83}
           alt="Logotipo da Prefeitura de Mesquita"
           src="/logo.png"
-          className="mb-3 mt-5 ml-5 w-[250px] self-center sm:self-center md:self-start"
+          className="mb-3 ml-5 mt-5 w-[250px] self-center sm:self-center md:self-start"
         />
-        <h1 className="mt-auto mb-5 self-center bg-blue-100 px-12 py-2 text-center text-3xl shadow">
+        <h1 className="mb-5 mt-auto self-center bg-blue-100 px-12 py-2 text-center text-3xl shadow">
           Clique no botão para imprimir uma senha
         </h1>
-        <div className="flex lg:flex-row flex-col w-full justify-around gap-8 px-8">
+        <div className="flex w-full flex-col justify-around gap-8 px-8 lg:flex-row">
+          {/* Comum */}
           <button
             onClick={() => commonPasswordMutation.mutate()}
-            className="w-full lg:w-auto flex-1  mb-auto self-center rounded bg-indigo-800 p-2 px-8 text-[70px] font-bold text-white shadow-lg shadow-indigo-500 transition hover:scale-105 hover:bg-blue-900 hover:text-blue-100 hover:shadow-blue-500 active:bg-blue-700 disabled:bg-indigo-300 disabled:text-slate-100"
+            className="mb-auto w-full flex-1  self-center rounded bg-indigo-800 p-2 px-8 text-[70px] font-bold text-white shadow-lg shadow-indigo-500 transition hover:scale-105 hover:bg-blue-900 hover:text-blue-100 hover:shadow-blue-500 active:bg-blue-700 disabled:bg-indigo-300 disabled:text-slate-100 lg:w-auto"
             disabled={commonPasswordMutation.isLoading}
           >
             {!commonPasswordMutation.isLoading ? "Comum" : "Imprimindo..."}
           </button>
-          <button
-            onClick={() => priorityPasswordMutation.mutate()}
-            className="w-full lg:w-auto flex-1  mb-auto self-center rounded bg-yellow-800 p-2 px-8 text-[70px] font-bold text-white shadow-lg shadow-yellow-500 transition hover:scale-105 hover:bg-amber-900 hover:text-amber-100 hover:shadow-amber-500 active:bg-amber-700 disabled:bg-yellow-300 disabled:text-slate-100"
-            disabled={priorityPasswordMutation.isLoading}
-          >
-            {!priorityPasswordMutation.isLoading
-              ? "Prioridade"
-              : "Imprimindo..."}
-          </button>
+          {/* Prioridade */}
+          {!!process.env.NEXT_PUBLIC_ENABLE_PRIORITY && (
+            <button
+              onClick={() => priorityPasswordMutation.mutate()}
+              className="mb-auto w-full flex-1  self-center rounded bg-yellow-800 p-2 px-8 text-[70px] font-bold text-white shadow-lg shadow-yellow-500 transition hover:scale-105 hover:bg-amber-900 hover:text-amber-100 hover:shadow-amber-500 active:bg-amber-700 disabled:bg-yellow-300 disabled:text-slate-100 lg:w-auto"
+              disabled={priorityPasswordMutation.isLoading}
+            >
+              {!priorityPasswordMutation.isLoading
+                ? "Prioridade"
+                : "Imprimindo..."}
+            </button>
+          )}
         </div>
         <footer className="mt-auto bg-indigo-800 p-1 text-center text-xs text-white shadow-inner shadow-indigo-800">
           2023 © Subsecretaria de Tecnologia da Informação — Prefeitura

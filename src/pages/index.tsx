@@ -78,10 +78,10 @@ const Home: NextPage = () => {
           height={83}
           alt="Logotipo da Prefeitura de Mesquita"
           src="/logo.png"
-          className="mb-3 mt-5 ml-5 w-[250px] self-center sm:self-center md:self-start"
+          className="mb-3 ml-5 mt-5 w-[250px] self-center sm:self-center md:self-start"
         />
         <h2 className="mt-auto text-center text-xl">Chamada</h2>
-        <div className="flex flex-col lg:flex-row w-full justify-around pb-4 lg:pb-0">
+        <div className="flex w-full flex-col justify-around pb-4 lg:flex-row lg:pb-0">
           {/* Senha Comum */}
           <div className="flex-1">
             <div
@@ -89,10 +89,10 @@ const Home: NextPage = () => {
                 commonInfo?.message ? "border-b-2" : ""
               } border-slate-800 bg-blue-300 text-center font-bold text-slate-800`}
             >
-              <h2 className="text-[50px] py-2 bg-slate-800/90 text-white">COMUM</h2>
-              <h2 className="text-[160px]">
-                {commonInfo?.password}
+              <h2 className="bg-slate-800/90 py-2 text-[50px] text-white">
+                COMUM
               </h2>
+              <h2 className="text-[160px]">{commonInfo?.password}</h2>
             </div>
             {commonInfo?.message && (
               <div className="mx-auto w-[95%] rounded rounded-t-none border-4 border-t-0 border-slate-800 bg-blue-300 p-4 text-center text-[80px] font-bold text-slate-800">
@@ -101,23 +101,25 @@ const Home: NextPage = () => {
             )}
           </div>
           {/* Prioridade */}
-          <div className="flex-1">
-            <div
-              className={`m-auto mb-0 mt-3 w-[95%] rounded rounded-b-none border-4 ${
-                priorityInfo?.message ? "border-b-2" : ""
-              } border-slate-800 bg-amber-300 text-center font-bold text-slate-800`}
+          {!!process.env.NEXT_PUBLIC_ENABLE_PRIORITY && (
+            <div className="flex-1">
+              <div
+                className={`m-auto mb-0 mt-3 w-[95%] rounded rounded-b-none border-4 ${
+                  priorityInfo?.message ? "border-b-2" : ""
+                } border-slate-800 bg-amber-300 text-center font-bold text-slate-800`}
               >
-              <h2 className="text-[50px] py-2 bg-slate-800/90 text-white">PRIORIDADE</h2>
-              <h2 className="text-[160px]">
-                {priorityInfo?.password}
-              </h2>
-            </div>
-            {priorityInfo?.message && (
-              <div className="mx-auto w-[95%] rounded rounded-t-none border-4 border-t-0 border-slate-800 bg-amber-300 p-4 text-center text-[80px] font-bold text-slate-800">
-                Guichê: {priorityInfo?.message}
+                <h2 className="bg-slate-800/90 py-2 text-[50px] text-white">
+                  PRIORIDADE
+                </h2>
+                <h2 className="text-[160px]">{priorityInfo?.password}</h2>
               </div>
-            )}
-          </div>
+              {priorityInfo?.message && (
+                <div className="mx-auto w-[95%] rounded rounded-t-none border-4 border-t-0 border-slate-800 bg-amber-300 p-4 text-center text-[80px] font-bold text-slate-800">
+                  Guichê: {priorityInfo?.message}
+                </div>
+              )}
+            </div>
+          )}
         </div>
         <footer className="mt-auto bg-indigo-800 p-1 text-center text-xs text-white">
           2023 © Subsecretaria de Tecnologia da Informação — Prefeitura
