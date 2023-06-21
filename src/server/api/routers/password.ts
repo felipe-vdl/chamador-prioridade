@@ -229,17 +229,18 @@ export const passwordRouter = createTRPCRouter({
       });
 
     if (previousCommonSession && previousPrioritySession) {
+      const closedAtDate = new Date();
       /* Close the last Sessions */
       await ctx.prisma.sessionCommonTotal.update({
         where: { id: previousCommonSession.id },
         data: {
-          closedAt: new Date(),
+          closedAt: closedAtDate,
         },
       });
       await ctx.prisma.sessionPriorityTotal.update({
         where: { id: previousPrioritySession.id },
         data: {
-          closedAt: new Date(),
+          closedAt: closedAtDate,
         },
       });
     }
