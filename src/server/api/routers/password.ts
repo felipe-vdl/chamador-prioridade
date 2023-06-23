@@ -78,14 +78,14 @@ export const passwordRouter = createTRPCRouter({
     return observable<void>((emit) => {
       const onSilence = () => {
         emit.next();
-      }
+      };
 
       passwordEmitter.on("silence", onSilence);
 
       return () => {
         passwordEmitter.off("silence", onSilence);
-      }
-    })
+      };
+    });
   }),
   newCommonPassword: publicProcedure.mutation(async ({ ctx }) => {
     const newPassword = await ctx.prisma.commonPassword.create({ data: {} });
@@ -119,7 +119,7 @@ export const passwordRouter = createTRPCRouter({
     /* Current Session */
     await ctx.prisma.sessionPriorityTotal
       .findFirst({
-        orderBy: { id: "desc" }
+        orderBy: { id: "desc" },
       })
       .then(async (session) => {
         if (session) {
@@ -220,7 +220,7 @@ export const passwordRouter = createTRPCRouter({
         throw new Error("A senha não existe.");
       }
     }),
-  callSilence: publicProcedure.mutation(async () => {
+  callSilence: publicProcedure.mutation(() => {
     passwordEmitter.emit("silence", undefined);
     return { success: true };
   }),
