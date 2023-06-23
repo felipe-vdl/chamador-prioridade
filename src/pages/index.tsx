@@ -65,6 +65,19 @@ const Home: NextPage = () => {
     },
   });
 
+  /* Silêncio */
+  api.password.silenceSubscription.useSubscription(undefined, {
+    onData: () => {
+      const voices = window.speechSynthesis.getVoices();
+      const newSpeech = new SpeechSynthesisUtterance("Por gentileza, manter o silêncio!");
+      newSpeech.voice = voices[0] as SpeechSynthesisVoice;
+      window.speechSynthesis.speak(newSpeech);
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+  });
+
   return (
     <>
       <Head>
