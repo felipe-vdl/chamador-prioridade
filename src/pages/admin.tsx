@@ -223,7 +223,7 @@ const Admin: NextPage = () => {
           )}
         </div>
         {/* Special Buttons */}
-        <div className="flex justify-center">
+        <div className="my-8 flex justify-center">
           <button
             className="mb-auto self-center rounded bg-cyan-800 p-2 px-8 font-bold text-white shadow-lg shadow-cyan-500 transition hover:scale-105 hover:bg-blue-900 hover:text-amber-100 hover:shadow-blue-500 active:bg-blue-700 disabled:bg-cyan-300 disabled:text-slate-100"
             disabled={callSilence.isLoading}
